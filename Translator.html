@@ -8,23 +8,24 @@
     <form id="wordForm">
         <label for="word">Írj be egy szót:</label>
         <input type="text" id="word" name="word" required>
-        <button type="button" onclick="replaceLetters()">Betűk cseréje</button>
+        <button type="button" onclick="replaceLetters()">Dekodolás</button>
+        <button type="button" onclick="clearInput()">Törlés</button>
     </form>
     <p id="result"></p>
     <button id="copyButton" style="display: none;">Decode másolása</button>
     
     <script>
+        var letterMap = {
+            'a': 'n', 'b': 'o', 'c': 'p', 'd': 'q', 'e': 'r', 'f': 's',
+            'g': 't', 'h': 'u', 'i': 'v', 'j': 'w', 'k': 'x', 'l': 'y', 'm': 'z',
+            'n': 'a', 'o': 'b', 'p': 'c', 'q': 'd', 'r': 'e', 's': 'f',
+            't': 'g', 'u': 'h', 'v': 'i', 'w': 'j', 'x': 'k', 'y': 'l', 'z': 'm'
+        };
+        
         function replaceLetters() {
             var wordInput = document.getElementById("word").value;
             var resultParagraph = document.getElementById("result");
             var copyButton = document.getElementById("copyButton");
-            
-            var letterMap = {
-                'a': 'n', 'b': 'o', 'c': 'p', 'd': 'q', 'e': 'r', 'f': 's',
-                'g': 't', 'h': 'u', 'i': 'v', 'j': 'w', 'k': 'x', 'l': 'y', 'm': 'z',
-                'n': 'a', 'o': 'b', 'p': 'c', 'q': 'd', 'r': 'e', 's': 'f',
-                't': 'g', 'u': 'h', 'v': 'i', 'w': 'j', 'x': 'k', 'y': 'l', 'z': 'm'
-            };
             
             var replacedWord = "";
             for (var i = 0; i < wordInput.length; i++) {
@@ -50,7 +51,17 @@
             textarea.select();
             document.execCommand("copy");
             document.body.removeChild(textarea);
-            alert("Decode másolva a vágólapra: " + text);
+            alert("Az eredmény másolva a vágólapra: " + text);
+        }
+        
+        function clearInput() {
+            var wordInput = document.getElementById("word");
+            var resultParagraph = document.getElementById("result");
+            var copyButton = document.getElementById("copyButton");
+            
+            wordInput.value = "";
+            resultParagraph.textContent = "";
+            copyButton.style.display = "none";
         }
     </script>
 </body>
