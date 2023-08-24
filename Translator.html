@@ -44,15 +44,15 @@
             });
         }
         
-        function copyTextToClipboard(text) {
+            function copyTextToClipboard(text) {
             var textarea = document.createElement("textarea");
             textarea.value = text;
             document.body.appendChild(textarea);
             textarea.select();
             document.execCommand("copy");
             document.body.removeChild(textarea);
-            alert("Az eredmény másolva a vágólapra: " + text);
         }
+
         
         function clearInput() {
             var wordInput = document.getElementById("word");
