@@ -11,11 +11,13 @@
         <button type="button" onclick="replaceLetters()">Betűk cseréje</button>
     </form>
     <p id="result"></p>
+    <button id="copyButton" style="display: none;">Decode másolása</button>
     
     <script>
         function replaceLetters() {
             var wordInput = document.getElementById("word").value;
             var resultParagraph = document.getElementById("result");
+            var copyButton = document.getElementById("copyButton");
             
             var letterMap = {
                 'a': 'n', 'b': 'o', 'c': 'p', 'd': 'q', 'e': 'r', 'f': 's',
@@ -35,6 +37,20 @@
             }
             
             resultParagraph.textContent = "Code: " + wordInput + " | Decode: " + replacedWord;
+            copyButton.style.display = "block";
+            copyButton.addEventListener("click", function() {
+                copyTextToClipboard(replacedWord);
+            });
+        }
+        
+        function copyTextToClipboard(text) {
+            var textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("Decode másolva a vágólapra: " + text);
         }
     </script>
 </body>
