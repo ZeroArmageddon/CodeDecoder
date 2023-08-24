@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodeDecoder</title>
+</head>
+<body>
+    <h1>CodeDecoder</h1>
+    <form id="wordForm">
+        <label for="word">Írj be egy szót:</label>
+        <input type="text" id="word" name="word" required>
+        <button type="button" onclick="replaceLetters()">Betűk cseréje</button>
+    </form>
+    <p id="result"></p>
+    
+    <script>
+        function replaceLetters() {
+            var wordInput = document.getElementById("word").value;
+            var resultParagraph = document.getElementById("result");
+            
+            var letterMap = {
+                'a': 'n', 'b': 'o', 'c': 'p', 'd': 'q', 'e': 'r', 'f': 's',
+                'g': 't', 'h': 'u', 'i': 'v', 'j': 'w', 'k': 'x', 'l': 'y', 'm': 'z',
+                'n': 'a', 'o': 'b', 'p': 'c', 'q': 'd', 'r': 'e', 's': 'f',
+                't': 'g', 'u': 'h', 'v': 'i', 'w': 'j', 'x': 'k', 'y': 'l', 'z': 'm'
+            };
+            
+            var replacedWord = "";
+            for (var i = 0; i < wordInput.length; i++) {
+                var char = wordInput[i].toLowerCase();
+                if (letterMap.hasOwnProperty(char)) {
+                    replacedWord += wordInput[i] === char ? letterMap[char] : letterMap[char].toUpperCase();
+                } else {
+                    replacedWord += wordInput[i];
+                }
+            }
+            
+            resultParagraph.textContent = "Eredeti szó: " + wordInput + " | Betűcserélt szó: " + replacedWord;
+        }
+    </script>
+</body>
+</html>
