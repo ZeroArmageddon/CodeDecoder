@@ -6,13 +6,13 @@
 <body>
     <h1>CodeDecoder</h1>
     <form id="wordForm">
-        <label for="word">Írj be egy szót:</label>
+        <label for="word">Ărj be egy szĂłt:</label>
         <input type="text" id="word" name="word" required>
-        <button type="button" onclick="replaceLetters()">Dekodolás</button>
-        <button type="button" onclick="clearInput()">Törlés</button>
+        <button type="button" onclick="replaceLetters()">DekodolĂĄs</button>
+        <button type="button" onclick="clearInput()">TĂśrlĂŠs</button>
     </form>
     <p id="result"></p>
-    <button id="copyButton" style="display: none;">Decode másolása</button>
+    <button id="copyButton" style="display: none;">Decode mĂĄsolĂĄsa</button>
     
     <script>
         var letterMap = {
@@ -68,99 +68,10 @@
 <body>
     <p></p>
     
-    <p>Ezt a gombot akkor nyomd meg ha véletlenül nő lennél:</p>
+    <p>Ezt a gombot akkor nyomd meg ha vĂŠletlenĂźl nĹ lennĂŠl:</p>
     
     <a href="https://youtu.be/e9mVfv3b-4E?si=ELDM_ts99CFKTd7b" target="_blank">
-        <button>Igen, nő vagyok</button>
+        <button>Igen, nĹ vagyok</button>
     </a>
 </body>
 </html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Coordinate Grid</title>
-    <style>
-        .grid-cell {
-            width: 30px;
-            height: 30px;
-            border: 1px solid black;
-            display: inline-block;
-            margin: 1px;
-            text-align: center;
-            line-height: 30px;
-            cursor: pointer;
-        }
-        #coordinate-grid {
-            margin-bottom: 10px;
-        }
-        .rotate-buttons {
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div id="coordinate-grid">
-        <!-- Coordinate grid will be generated here -->
-    </div>
-    <div class="rotate-buttons">
-        <button onclick="rotate('north')">Északi forgatás</button>
-        <button onclick="rotate('south')">Déli forgatás</button>
-        <button onclick="rotate('west')">Nyugati forgatás</button>
-        <button onclick="rotate('east')">Keleti forgatás</button>
-    </div>
-    
-    <script>
-        // Define grid dimensions
-        const gridSize = 32;
-        const gridLevels = 32;
-        
-        // Define current level variable
-        let currentLevel = 0;
-
-        // Define function to generate coordinate grid
-        function generateGrid() {
-            // Generate grid HTML dynamically
-            let gridHTML = '';
-            for (let z = 0; z < gridSize; z++) {
-                for (let x = 0; x < gridSize; x++) {
-                    // Add HTML for each grid cell
-                    gridHTML += `<div class="grid-cell" data-x="${x}" data-z="${z}" data-level="${currentLevel}" onclick="showCoordinates(${x}, ${currentLevel}, ${z})">${x}, ${currentLevel}, ${z}</div>`;
-                }
-                gridHTML += '<br>';
-            }
-            // Insert generated grid HTML into coordinate-grid div
-            document.getElementById('coordinate-grid').innerHTML = gridHTML;
-        }
-
-        // Define function to show coordinates when grid cell is clicked
-        function showCoordinates(x, y, z) {
-            alert(`Koordináták: X: ${x}, Y: ${y}, Z: ${z}`);
-        }
-
-        // Define function to rotate coordinate grid
-        function rotate(direction) {
-            const grid = document.getElementById('coordinate-grid');
-            switch (direction) {
-                case 'north':
-                    grid.style.transform = 'rotate(0deg)';
-                    break;
-                case 'south':
-                    grid.style.transform = 'rotate(180deg)';
-                    break;
-                case 'west':
-                    grid.style.transform = 'rotate(-90deg)';
-                    break;
-                case 'east':
-                    grid.style.transform = 'rotate(90deg)';
-                    break;
-            }
-        }
-
-        // Call generateGrid function to generate grid on page load
-        generateGrid();
-    </script>
-</body>
-</html>
-
-
