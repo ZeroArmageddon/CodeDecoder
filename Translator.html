@@ -1,19 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeDecoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.1em;
+            color: #666;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #copyButton {
+            display: none;
+        }
+        #result {
+            font-size: 1.1em;
+            color: #333;
+            margin-top: 20px;
+        }
+        .special-button-container {
+            margin-top: 30px;
+        }
+        .special-button-container a button {
+            background-color: #FF4081;
+        }
+        .special-button-container a button:hover {
+            background-color: #f73378;
+        }
+    </style>
 </head>
 <body>
-    <h1>CodeDecoder</h1>
-    <form id="wordForm">
-        <label for="word">írj be egy szót:</label>
-        <input type="text" id="word" name="word" required>
-        <button type="button" onclick="replaceLetters()">Dekodolás</button>
-        <button type="button" onclick="clearInput()">Törlés</button>
-    </form>
-    <p id="result"></p>
-    <button id="copyButton" style="display: none;">Decode másolása</button>
-    
+    <div class="container">
+        <h1>CodeDecoder</h1>
+        <form id="wordForm">
+            <label for="word">Írj be egy szót:</label>
+            <input type="text" id="word" name="word" required>
+            <button type="button" onclick="replaceLetters()">Dekódolás</button>
+            <button type="button" onclick="clearInput()">Törlés</button>
+        </form>
+        <p id="result"></p>
+        <button id="copyButton">Decode másolása</button>
+
+        <div class="special-button-container">
+            <p>Ezt a gombot akkor nyomd meg ha véletlenül nő lennél:</p>
+            <a href="https://youtu.be/e9mVfv3b-4E?si=ELDM_ts99CFKTd7b" target="_blank">
+                <button>Igen, nő vagyok</button>
+            </a>
+        </div>
+    </div>
+
     <script>
         var letterMap = {
             'a': 'n', 'b': 'o', 'c': 'p', 'd': 'q', 'e': 'r', 'f': 's',
@@ -38,40 +121,28 @@
             }
             
             resultParagraph.textContent = "Code: " + wordInput + " | Decode: " + replacedWord;
-            copyButton.style.display = "block";
-            copyButton.addEventListener("click", function() {
+            copyButton.style.display = "inline-block";
+            copyButton.onclick = function() {
                 copyTextToClipboard(replacedWord);
-            });
+            };
         }
         
-            function copyTextToClipboard(text) {
+        function copyTextToClipboard(text) {
             var textarea = document.createElement("textarea");
             textarea.value = text;
             document.body.appendChild(textarea);
             textarea.select();
             document.execCommand("copy");
             document.body.removeChild(textarea);
+            alert("Szöveg másolva!");
         }
-
         
         function clearInput() {
-            var wordInput = document.getElementById("word");
-            var resultParagraph = document.getElementById("result");
-            var copyButton = document.getElementById("copyButton");
-            
-            wordInput.value = "";
-            resultParagraph.textContent = "";
-            copyButton.style.display = "none";
+            document.getElementById("word").value = "";
+            document.getElementById("result").textContent = "";
+            document.getElementById("copyButton").style.display = "none";
         }
     </script>
 </body>
-<body>
-    <p></p>
-    
-    <p>Ezt a gombot akkor nyomd meg ha véletlenül nő lennél:</p>
-    
-    <a href="https://youtu.be/e9mVfv3b-4E?si=ELDM_ts99CFKTd7b" target="_blank">
-        <button>Igen, nő vagyok</button>
-    </a>
-</body>
 </html>
+
